@@ -22,7 +22,7 @@ const articlesArray: Articles[] = [
         id: 3,
         title: 'Wake up to a healthy morning',
         description: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci',
-        image: "/images/edward-franklin-72304.jpeg"
+        image: "/images/adam-jaime-119568.jpeg"
     },
     {
         id: 4,
