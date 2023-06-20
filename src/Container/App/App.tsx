@@ -4,9 +4,11 @@ import { StyledEngineProvider } from '@mui/material/styles'
 import { Route, Routes } from 'react-router-dom'
 import Home from 'pages/Home/Home'
 import About from 'pages/About/About'
-import Categories from 'pages/Categories/Categories'
+import BookOfRecipes from 'pages/Categories/BookOfRecipes'
 import Contact from 'pages/Contact/Contact'
 import Favorites from 'pages/Favorites/Favorites'
+import FreshFood from 'pages/Categories/FreshFood'
+import HealthyEating from 'pages/Categories/HealthyEating'
 
 const App = () => {
     return (
@@ -15,7 +17,9 @@ const App = () => {
             <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/categories" element={<Categories />} />
+                <Route path="/book-of-recipes" element={<BookOfRecipes />} />
+                <Route path="/fresh-food" element={<FreshFood />} />
+                <Route path="/healthy-eating" element={<HealthyEating />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/favorites" element={<Favorites />} />
