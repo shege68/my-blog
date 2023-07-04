@@ -4,7 +4,7 @@ import articlesArray from 'utils/articlesArray'
 
 type Props = {}
 
-const HealthyEating = (props: Props) => {
+const BookOfRecipes = (props: Props) => {
     return (
         <Container>
             <Typography
@@ -15,7 +15,7 @@ const HealthyEating = (props: Props) => {
             ></Typography>
             <Grid container spacing={4}>
                 {articlesArray
-                    .filter((item) => item.category === 'Healthy Eating')
+                    .filter((item) => item.category === 'Recipes')
                     .map(
                         ({ id, title, subheader, description, image, alt }) => (
                             <Grid item xs={12} sm={6} md={4} key={id}>
@@ -35,4 +35,4 @@ const HealthyEating = (props: Props) => {
     )
 }
 
-export default HealthyEating
+export default BookOfRecipes

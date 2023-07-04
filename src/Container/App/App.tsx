@@ -4,10 +4,10 @@ import { StyledEngineProvider } from '@mui/material/styles'
 import { Route, Routes } from 'react-router-dom'
 import Home from 'pages/Home/Home'
 import About from 'pages/About/About'
-import BookOfRecipes from 'pages/Categories/BookOfRecipes'
+import Recipes from 'pages/Categories/Recipes'
 import Contact from 'pages/Contact/Contact'
 import Favorites from 'pages/Favorites/Favorites'
-import FreshFood from 'pages/Categories/FreshFood'
+import Restaurant from 'pages/Categories/Restaurant'
 import HealthyEating from 'pages/Categories/HealthyEating'
 
 const App = () => {
@@ -17,8 +17,8 @@ const App = () => {
             <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/book-of-recipes" element={<BookOfRecipes />} />
-                <Route path="/fresh-food" element={<FreshFood />} />
+                <Route path="/book-of-recipes" element={<Recipes />} />
+                <Route path="/fresh-food" element={<Restaurant />} />
                 <Route path="/healthy-eating" element={<HealthyEating />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />

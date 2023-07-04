@@ -11,9 +11,9 @@ const Menu = (props: Props) => {
                 <div className="dropdown">
                     Categories
                     <div className="dropdown-content">
-                        <MenuItem to="/book-of-recipes">BookOfRecipes</MenuItem>
-                        <MenuItem to="/fresh-food">FreshFood</MenuItem>
-                        <MenuItem to="/healthy-eating">HealthyEating</MenuItem>
+                        <MenuItem to="/book-of-recipes">Recipes</MenuItem>
+                        <MenuItem to="/fresh-food">Restaurant</MenuItem>
+                        <MenuItem to="/healthy-eating">Healthy Eating</MenuItem>
                     </div>
                 </div>
             </Button>

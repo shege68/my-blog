@@ -1,29 +1,3 @@
-// import { Card, CardContent } from '@mui/material'
-// import './ArticlesListItem.scss'
-
-// type Props = {
-//     id: number
-//     title: string
-//     description: string
-//     image: string
-// }
-
-// const ArticlesListItem = ({ id, title, description, image }: Props) => {
-//     return (
-//         <Card className="article" variant="outlined">
-//             <CardContent>
-//                 <div className="article-img">
-//                     <img src={image} alt="" />
-//                 </div>
-//                 <h4 className="article-title">{title}</h4>
-//                 <div className="article-description">{description}</div>
-//             </CardContent>
-//         </Card>
-//     )
-// }
-
-// export default ArticlesListItem
-
 import * as React from 'react'
 import { styled } from '@mui/material/styles'
 import Card from '@mui/material/Card'
@@ -59,12 +33,20 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
 type Props = {
     id: number
     title: string
+    subheader: string
     description: string
     image: string
     alt: string
 }
 
-const ArticlesListItem = ({ id, title, description, image, alt }: Props) => {
+const ArticlesListItem = ({
+    id,
+    title,
+    subheader,
+    description,
+    image,
+    alt,
+}: Props) => {
     const [expanded, setExpanded] = React.useState(false)
 
     const handleExpandClick = () => {
@@ -85,7 +67,7 @@ const ArticlesListItem = ({ id, title, description, image, alt }: Props) => {
                     </IconButton>
                 }
                 title={title}
-                subheader="September 14, 2016"
+                subheader={subheader}
             />
             <CardMedia component="img" height="194" image={image} alt={alt} />
             <CardContent>
@@ -111,7 +93,7 @@ const ArticlesListItem = ({ id, title, description, image, alt }: Props) => {
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                    <Typography paragraph>Method:</Typography>
+                    <Typography paragraph>Recipe:</Typography>
                     <Typography paragraph>
                         Heat 1/2 cup of the broth in a pot until simmering, add
                         saffron and set aside for 10 minutes.
