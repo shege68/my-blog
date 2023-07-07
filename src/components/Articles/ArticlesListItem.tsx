@@ -11,9 +11,9 @@ import IconButton, { IconButtonProps } from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import { red } from '@mui/material/colors'
 import FavoriteIcon from '@mui/icons-material/Favorite'
-import ShareIcon from '@mui/icons-material/Share'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import MoreVertIcon from '@mui/icons-material/MoreVert'
+import { useAppDispatch, useAppSelector } from 'redux/hooks'
+import { FavoriteBorder } from '@mui/icons-material'
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean
@@ -53,6 +53,9 @@ const ArticlesListItem = ({
         setExpanded(!expanded)
     }
 
+    const isLiked = useAppSelector((state) => state.productLikeState[id])
+    const dispatch = useAppDispatch()
+
     return (
         <Card sx={{ maxWidth: 345, margin: '30px 0' }}>
             <CardHeader
@@ -60,11 +63,6 @@ const ArticlesListItem = ({
                     <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
                         R
                     </Avatar>
-                }
-                action={
-                    <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                    </IconButton>
                 }
                 title={title}
                 subheader={subheader}
@@ -76,11 +74,20 @@ const ArticlesListItem = ({
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                </IconButton>
-                <IconButton aria-label="share">
-                    <ShareIcon />
+                <IconButton
+                    aria-label="add to favorites"
+                    onClick={() =>
+                        dispatch({
+                            type: 'TOGGLE_LIKE',
+                            id: id,
+                        })
+                    }
+                >
+                    {isLiked ? (
+                        <FavoriteIcon color="warning" />
+                    ) : (
+                        <FavoriteBorder color="warning" />
+                    )}
                 </IconButton>
                 <ExpandMore
                     expand={expanded}
