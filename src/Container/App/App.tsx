@@ -9,6 +9,7 @@ import Contact from 'pages/Contact/Contact'
 import Favorites from 'pages/Favorites/Favorites'
 import Restaurant from 'pages/Categories/Restaurant'
 import HealthyEating from 'pages/Categories/HealthyEating'
+import Article from 'pages/Article/Article'
 
 const App = () => {
     return (
@@ -23,6 +24,7 @@ const App = () => {
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/favorites" element={<Favorites />} />
+                <Route path="/article/:id" element={<Article />} />
             </Routes>
         </StyledEngineProvider>
     )

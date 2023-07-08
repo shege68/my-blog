@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { styled } from '@mui/material/styles'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
@@ -14,7 +13,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { FavoriteBorder } from '@mui/icons-material'
-
+import { Link } from 'react-router-dom'
+import { useState } from 'react'
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean
 }
@@ -47,7 +47,7 @@ const ArticlesListItem = ({
     image,
     alt,
 }: Props) => {
-    const [expanded, setExpanded] = React.useState(false)
+    const [expanded, setExpanded] = useState(false)
 
     const handleExpandClick = () => {
         setExpanded(!expanded)
@@ -64,7 +64,7 @@ const ArticlesListItem = ({
                         R
                     </Avatar>
                 }
-                title={title}
+                title={<Link to={`/article/${id}`}>{title}</Link>}
                 subheader={subheader}
             />
             <CardMedia component="img" height="194" image={image} alt={alt} />
