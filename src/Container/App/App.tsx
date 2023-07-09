@@ -1,4 +1,4 @@
-import Header from 'Container/Header/Header'
+import HeaderMenuColored from 'Container/Header/HeaderMenuColored'
 import CssBaseline from '@mui/material/CssBaseline'
 import { StyledEngineProvider } from '@mui/material/styles'
 import { Route, Routes } from 'react-router-dom'
@@ -10,6 +10,7 @@ import Favorites from 'pages/Favorites/Favorites'
 import Restaurant from 'pages/Categories/Restaurant'
 import HealthyEating from 'pages/Categories/HealthyEating'
 import Article from 'pages/Article/Article'
+import Header from 'Container/Header/Header'
 
 const App = () => {
     return (

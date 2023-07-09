@@ -15,6 +15,7 @@ import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { FavoriteBorder } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { toggleLike } from 'redux/likeReducer'
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean
 }
@@ -76,12 +77,7 @@ const ArticlesListItem = ({
             <CardActions disableSpacing>
                 <IconButton
                     aria-label="add to favorites"
-                    onClick={() =>
-                        dispatch({
-                            type: 'TOGGLE_LIKE',
-                            id: id,
-                        })
-                    }
+                    onClick={() => dispatch(toggleLike(id))}
                 >
                     {isLiked ? (
                         <FavoriteIcon color="warning" />
