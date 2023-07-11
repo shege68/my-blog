@@ -1,25 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AnyAction } from "redux";
-import { createCompilerHost } from "typescript";
 
 type LikeState = {
     [id: number]: boolean
+    count: number
 }
 
-const initialState:  LikeState = {}
-
-// export const likeReducer = (state = initialState, action: AnyAction) => {
-//     switch (action.type){
-//         case 'TOGGLE_LIKE': {
-//             return {
-//                 ...state,
-//                 [action.id]: !state[action.id]
-//             }
-//         }
-//         default:
-//             return state
-//     }
-// }
+const initialState:  LikeState = {count:0}
 
 export const likeSlice = createSlice({
     name: 'like',
@@ -27,10 +13,11 @@ export const likeSlice = createSlice({
     reducers: {
         toggleLike: (state, action) => ({
             ...state,
-            [action.payload]: !state[action.payload]
+            [action.payload]: !state[action.payload],
+            count: !state[action.payload] ? state.count + 1 : state.count - 1
         })
     }
 })
 
 export const {toggleLike} = likeSlice.actions
-export default likeSlice.reducer
+export default likeSlice.reducer 
