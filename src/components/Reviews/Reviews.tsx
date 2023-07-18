@@ -1,33 +1,38 @@
+import React, { FormEvent, useState } from 'react'
+
 import {
+    TextInput,
+    Textarea,
+    Group,
+    Title,
     Button,
     Card,
-    CardContent,
-    TextareaAutosize,
-    TextField,
-    Typography,
-} from '@mui/material'
-import React, { FormEvent, useState } from 'react'
+    CardSection,
+} from '@mantine/core'
 
 type Props = {}
 
 type Review = {
     name: string
-    text: string
+    message: string
 }
 
 const Reviews = (props: Props) => {
     const arrReviews: Review[] = [
         {
             name: 'John',
-            text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti, et accusamus mollitia architecto vel inventore natus eum animi earum officia quos facilis nam esse ullam numquam ipsa rerum amet fugit?',
+            message:
+                'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti, et accusamus mollitia architecto vel inventore natus eum animi earum officia quos facilis nam esse ullam numquam ipsa rerum amet fugit?',
         },
         {
             name: 'Smith',
-            text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, itaque, id eos nam nesciunt magni, veritatis tempora maiores neque voluptates quisquam soluta dolor in optio voluptas officiis totam animi doloribus.',
+            message:
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, itaque, id eos nam nesciunt magni, veritatis tempora maiores neque voluptates quisquam soluta dolor in optio voluptas officiis totam animi doloribus.',
         },
         {
             name: 'Mary',
-            text: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis dolores doloremque ab tempora maiores praesentium nobis assumenda dolorem consectetur porro voluptate eveniet aliquam corrupti libero, vitae odit laudantium deserunt a?',
+            message:
+                'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis dolores doloremque ab tempora maiores praesentium nobis assumenda dolorem consectetur porro voluptate eveniet aliquam corrupti libero, vitae odit laudantium deserunt a?',
         },
     ]
 
@@ -35,7 +40,7 @@ const Reviews = (props: Props) => {
 
     const [newReview, setNewReview] = useState<Review>({
         name: '',
-        text: '',
+        message: '',
     })
 
     const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,13 +52,13 @@ const Reviews = (props: Props) => {
     const handleText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setNewReview((prevState) => ({
             ...prevState,
-            text: e.target.value,
+            message: e.target.value,
         }))
     }
 
     const onSend = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        if (newReview.name === '' || newReview.text === '') {
+        if (newReview.name === '' || newReview.message === '') {
             alert('All fields are requires')
         } else {
             setReview((prevState) => {
@@ -61,48 +66,62 @@ const Reviews = (props: Props) => {
             })
             setNewReview({
                 name: '',
-                text: '',
+                message: '',
             })
         }
     }
 
     return (
-        <div>
-            <Typography variant="h4" component={'h2'}>
+        <form onSubmit={onSend}>
+            <Title order={1} align="center" mt={'xl'}>
                 Reviews
-            </Typography>
-            {review.map(({ name, text }, i) => (
-                <Card variant="outlined" sx={{ margin: '30px 0' }} key={i}>
-                    <CardContent>
+            </Title>
+            {review.map(({ name, message }, i) => (
+                <Card shadow="lg" my={'lg'} radius="md" withBorder key={i}>
+                    <CardSection p={'lg'}>
                         <div>{name}:</div>
-                        <div>{text}</div>
-                    </CardContent>
+                        <div>{message}</div>
+                    </CardSection>
                 </Card>
             ))}
-            <form onSubmit={onSend}>
-                <h3>Please leave a review</h3>
-                <div>
-                    <TextField
-                        size="small"
-                        placeholder="Your name"
-                        value={newReview.name}
-                        onChange={handleName}
-                    />
-                </div>
-                <br />
-                <div>
-                    <TextareaAutosize
-                        minRows={5}
-                        placeholder="Your text"
-                        value={newReview.text}
-                        onChange={handleText}
-                    />
-                </div>
-                <Button variant="outlined" type="submit">
-                    Send
+            <Title
+                order={2}
+                size="h2"
+                sx={(theme) => ({
+                    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+                })}
+                weight={700}
+                align="center"
+            >
+                Please leave a review
+            </Title>
+            <TextInput
+                label="Name"
+                placeholder="Your name"
+                name="name"
+                variant="filled"
+                value={newReview.name}
+                onChange={handleName}
+            />
+
+            <Textarea
+                mt="md"
+                label="Message"
+                placeholder="Your message"
+                maxRows={10}
+                minRows={5}
+                autosize
+                name="message"
+                variant="filled"
+                value={newReview.message}
+                onChange={handleText}
+            />
+            <Group position="center" mt="xl">
+                <Button type="submit" size="md" color={'yellow'} mt="sm">
+                    Send message
                 </Button>
-            </form>
-        </div>
+            </Group>
+        </form>
     )
 }
 

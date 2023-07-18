@@ -16,6 +16,7 @@ import { FavoriteBorder } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { toggleLike } from 'redux/likeReducer'
+import './ArticlesListItem.scss'
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean
 }
@@ -38,6 +39,8 @@ type Props = {
     description: string
     image: string
     alt: string
+    link: string
+    avatar: string
 }
 
 const ArticlesListItem = ({
@@ -47,6 +50,8 @@ const ArticlesListItem = ({
     description,
     image,
     alt,
+    link,
+    avatar,
 }: Props) => {
     const [expanded, setExpanded] = useState(false)
 
@@ -63,11 +68,17 @@ const ArticlesListItem = ({
         <Card sx={{ maxWidth: 345, margin: '30px 0' }}>
             <CardHeader
                 avatar={
-                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                        R
+                    <Avatar sx={{ bgcolor: red[600] }} aria-label="recipe">
+                        <Link className="link-avatar" to={`${link}`}>
+                            {avatar}
+                        </Link>
                     </Avatar>
                 }
-                title={<Link to={`/article/${id}`}>{title}</Link>}
+                title={
+                    <Link className="link" to={`/article/${id}`}>
+                        {title}
+                    </Link>
+                }
                 subheader={subheader}
             />
             <CardMedia component="img" height="194" image={image} alt={alt} />
@@ -82,9 +93,9 @@ const ArticlesListItem = ({
                     onClick={() => dispatch(toggleLike(id))}
                 >
                     {isLiked ? (
-                        <FavoriteIcon color="warning" />
+                        <FavoriteIcon color="error" />
                     ) : (
-                        <FavoriteBorder color="warning" />
+                        <FavoriteBorder color="error" />
                     )}
                 </IconButton>
                 <ExpandMore
@@ -98,10 +109,36 @@ const ArticlesListItem = ({
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                    <Typography paragraph>Recipe:</Typography>
+                    <Typography
+                        paragraph
+                        component="h3"
+                        variant="h5"
+                        align="center"
+                    >
+                        Recipe:
+                    </Typography>
                     <Typography paragraph>
-                        Heat 1/2 cup of the broth in a pot until simmering, add
-                        saffron and set aside for 10 minutes.
+                        <ul>
+                            <li>2 avocados – peeled, pitted and diced</li>
+                            <li>1 1/2 tablespoons fresh lime juice</li>
+                            <li>1/4 cup chopped fresh cilantro</li>
+                            <li>
+                                1/4 cup salsa garlic salt to taste ground black
+                                pepper to taste
+                            </li>
+                            <li>1 (8 ounce) container sour cream</li>
+                            <li>1 (1 ounce) package taco seasoning mix</li>
+                            <li>
+                                4 roma (plum) tomatoes, diced 1 bunch green
+                                onions, finely chopped
+                            </li>
+                            <li>1 (16 ounce) can refried beans</li>
+                            <li>2 cups shredded Mexican-style cheese blend</li>
+                            <li>
+                                1 (2.25 ounce) can black olives – drained and
+                                finely chopped
+                            </li>
+                        </ul>
                     </Typography>
                     <Typography paragraph>
                         Heat oil in a (14- to 16-inch) paella pan or a large,

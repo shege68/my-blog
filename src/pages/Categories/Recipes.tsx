@@ -17,7 +17,16 @@ const BookOfRecipes = (props: Props) => {
                 {articlesArray
                     .filter((item) => item.category === 'Recipes')
                     .map(
-                        ({ id, title, subheader, description, image, alt }) => (
+                        ({
+                            id,
+                            title,
+                            subheader,
+                            description,
+                            image,
+                            alt,
+                            link,
+                            avatar,
+                        }) => (
                             <Grid item xs={12} sm={6} md={4} key={id}>
                                 <ArticlesListItem
                                     id={id}
@@ -26,6 +35,8 @@ const BookOfRecipes = (props: Props) => {
                                     description={description}
                                     image={image}
                                     alt={alt}
+                                    link={link}
+                                    avatar={avatar}
                                 />
                             </Grid>
                         )

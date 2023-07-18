@@ -1,4 +1,3 @@
-import HeaderMenuColored from 'Container/Header/HeaderMenuColored'
 import CssBaseline from '@mui/material/CssBaseline'
 import { StyledEngineProvider } from '@mui/material/styles'
 import { Route, Routes } from 'react-router-dom'
@@ -10,23 +9,26 @@ import Favorites from 'pages/Favorites/Favorites'
 import Restaurant from 'pages/Categories/Restaurant'
 import HealthyEating from 'pages/Categories/HealthyEating'
 import Article from 'pages/Article/Article'
-import Header from 'Container/Header/Header'
+import Footer from 'Container/Footer/Footer'
+import HeaderMenuColored from 'Container/Header/HeaderMenuColored'
+import HeaderMegaMenu from 'Container/Header/HeaderMegaMenu'
 
 const App = () => {
     return (
         <StyledEngineProvider injectFirst>
             <CssBaseline />
-            <Header />
+            <HeaderMenuColored />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/book-of-recipes" element={<Recipes />} />
-                <Route path="/fresh-food" element={<Restaurant />} />
+                <Route path="/restaurant" element={<Restaurant />} />
                 <Route path="/healthy-eating" element={<HealthyEating />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/favorites" element={<Favorites />} />
                 <Route path="/article/:id" element={<Article />} />
             </Routes>
+            <Footer />
         </StyledEngineProvider>
     )
 }

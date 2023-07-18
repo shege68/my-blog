@@ -2,6 +2,7 @@ import { Container } from '@mui/material'
 import Reviews from 'components/Reviews/Reviews'
 import { useParams } from 'react-router-dom'
 import articlesArray, { Articles, getArticlesObject } from 'utils/articlesArray'
+import './Article.scss'
 
 type Props = {
     articlesObject?: {
@@ -16,7 +17,6 @@ const Article = ({
     const complete = articlesObject[parseInt(id!)].completeArticle
     return (
         <Container>
-            {/* <div >{articlesObject[parseInt(id!)].completeArticle}</div> */}
             <div dangerouslySetInnerHTML={{ __html: complete! }}></div>
             <Reviews />
         </Container>

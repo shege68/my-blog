@@ -5,7 +5,12 @@ type Props = {}
 
 const Logo = (props: Props) => {
     return (
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Typography
+            variant="inherit"
+            align="left"
+            component="div"
+            sx={{ flexGrow: 1 }}
+        >
             <img src={logo} alt="my-blog logo" />
         </Typography>
     )

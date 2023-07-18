@@ -1,31 +1,42 @@
-export type Links = {
-   links: { link: string; label: string; links: { link: string; label: string }[] }[];
-}
+export type Links = { link: string; label: string; links?: { link: string; label: string }[] }[]
 
-const linksArray = [
-    {links: [
-    { link: '/about', label: 'Features' },
+const linksArray: Links = [
     {
-        link: '#1',
-        label: 'Learn',
-        links: [
-            { link: '/docs', label: 'Documentation' },
-            { link: '/resources', label: 'Resources' },
-            { link: '/community', label: 'Community' },
-            { link: '/blog', label: 'Blog' }
-        ]
+      link: "/",
+      label: "Home"
     },
-    { link: '/about', label: 'About' },
-    { link: '/pricing', label: 'Pricing' },
+    
     {
-        link: '#2',
-        label: 'Support',
-        links: [
-            { link: '/faq', label: 'FAQ' },
-            { link: '/demo', label: 'Book a demo' },
-            { link: '/forums', label: 'Forums' }
-        ]
-    }
-]}]
+      link: "/about",
+      label: "About"
+    },
+    {
+      link: "/contact",
+      label: "Contact"
+    },
+   
+    {
+      link: "#",
+      label: "Category",
+      links: [
+        {
+          link: "/book-of-recipes",
+          label: "Book-recipes"
+        },
+        {
+          link: "/restaurant",
+          label: "Restaurant"
+        },
+        {
+          link: "/healthy-eating",
+          label: "Healthy Eating"
+        },
+      ]
+    },
+    {
+      link: "/favorites",
+      label: "Favorites"
+    },
+  ]
 
-export default linksArray
+  export default linksArray

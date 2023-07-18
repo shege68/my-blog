@@ -8,8 +8,11 @@ import {
     SimpleGrid,
     createStyles,
     rem,
+    Container,
+    Image,
+    Title,
+    TypographyStylesProvider,
 } from '@mantine/core'
-import { Container } from '@mui/material'
 
 import bg from './bg.jpeg'
 import { ContactIconsList } from './ContactIconsList'
@@ -115,7 +118,51 @@ const Contact = (props: Props) => {
     const { classes } = useStyles()
 
     return (
-        <Container sx={{ padding: '40px 0' }}>
+        <Container sx={{ padding: '30px 20px' }}>
+            <Title order={1} align="center" mb={10}>
+                Contact Us
+            </Title>
+            <Image
+                mx={5}
+                radius="md"
+                src="/images/contact-us.jpeg"
+                alt="Random image"
+                my={5}
+            />
+            <Text mx={5}>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Nesciunt nulla quam aut sed corporis voluptates praesentium
+                    inventore, sapiente ex tempore sit consequatur debitis non!
+                    Illo cum ipsa reiciendis quidem facere, deserunt eos totam
+                    impedit. Vel ab, ipsum veniam aperiam odit molestiae
+                    incidunt minus, sint eos iusto earum quaerat vitae
+                    perspiciatis.
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Nesciunt nulla quam aut sed corporis voluptates praesentium
+                    inventore, sapiente ex tempore sit consequatur debitis non!
+                    Illo cum ipsa reiciendis quidem facere, deserunt eos totam
+                    impedit. Vel ab, ipsum veniam aperiam odit molestiae
+                    incidunt minus, sint eos iusto earum quaerat vitae
+                    perspiciatis.
+                </p>
+            </Text>
+            <Text mx={5}>
+                <TypographyStylesProvider>
+                    <h3>Contact information</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Nesciunt nulla quam aut sed corporis voluptates
+                        praesentium inventore, sapiente ex tempore sit
+                        consequatur debitis non! Illo cum ipsa reiciendis quidem
+                        facere, deserunt eos totam impedit. Vel ab, ipsum veniam
+                        aperiam odit molestiae incidunt minus, sint eos iusto
+                        earum quaerat vitae perspiciatis.
+                    </p>
+                </TypographyStylesProvider>
+            </Text>
             <Paper shadow="md" radius="lg">
                 <div className={classes.wrapper}>
                     <div className={classes.contacts}>

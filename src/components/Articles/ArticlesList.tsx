@@ -9,13 +9,24 @@ const ArticlesList = (props: Props) => {
         <>
             <Typography
                 component="h2"
-                variant="h3"
+                variant="h4"
                 align="center"
-                sx={{ marginBottom: '30px' }}
-            ></Typography>
+                sx={{ margin: '30px 0' }}
+            >
+                Articles
+            </Typography>
             <Grid container spacing={4}>
                 {articlesArray.map(
-                    ({ id, title, subheader, description, image, alt }) => (
+                    ({
+                        id,
+                        title,
+                        subheader,
+                        description,
+                        image,
+                        alt,
+                        link,
+                        avatar,
+                    }) => (
                         <Grid item xs={12} sm={6} md={4} key={id}>
                             <ArticlesListItem
                                 id={id}
@@ -24,6 +35,8 @@ const ArticlesList = (props: Props) => {
                                 description={description}
                                 image={image}
                                 alt={alt}
+                                link={link}
+                                avatar={avatar}
                             />
                         </Grid>
                     )
