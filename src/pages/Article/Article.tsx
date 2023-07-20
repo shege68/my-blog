@@ -14,7 +14,10 @@ const Article = ({
     articlesObject = getArticlesObject(articlesArray),
 }: Props) => {
     const { id } = useParams()
+    console.log('🚀 ~ file: Article.tsx:17 ~ id:', id)
     const complete = articlesObject[parseInt(id!)].completeArticle
+    console.log('🚀 ~ file: Article.tsx:15 ~ articlesObject:', articlesObject)
+    console.log('🚀 ~ file: Article.tsx:20 ~ complete:', complete)
     return (
         <Container>
             <div dangerouslySetInnerHTML={{ __html: complete! }}></div>
@@ -22,5 +25,4 @@ const Article = ({
         </Container>
     )
 }
-
 export default Article

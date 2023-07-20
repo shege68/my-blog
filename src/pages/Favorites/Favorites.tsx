@@ -1,7 +1,8 @@
 import { Text, Title } from '@mantine/core'
-import { Container, Grid, Typography } from '@mui/material'
+import { Container, Grid } from '@mui/material'
 import ArticlesListItem from 'components/Articles/ArticlesListItem'
 import { useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { useAppSelector } from 'redux/hooks'
 import articlesArray from 'utils/articlesArray'
 import getArticlesObject from 'utils/articlesArray'
@@ -9,21 +10,6 @@ import getArticlesObject from 'utils/articlesArray'
 type Props = {}
 
 const Favorites = (props: Props) => {
-    const [newArticlesArray, setNewArticlesArray] = useState(articlesArray)
-
-    function addArticlesToFavorites(newLiked: boolean) {
-        setNewArticlesArray(
-            newArticlesArray.map((item) => {
-                return {
-                    ...item,
-                    liked: newLiked,
-                }
-            })
-        )
-    }
-
-    const likedId = useAppSelector((state) => state.articleLikeState)
-
     return (
         <Container sx={{ padding: '30px 20px' }}>
             <Title order={1} align="center" mb={10}>
@@ -41,7 +27,8 @@ const Favorites = (props: Props) => {
                 </p>
             </Text>
             <Grid container spacing={4}>
-                {newArticlesArray
+                {/* {Object.keys(likedId).filter((item) => item === true)} */}
+                {/* {newArticlesArray
                     .filter((item) => item.liked === true)
                     .map(
                         ({
@@ -67,7 +54,7 @@ const Favorites = (props: Props) => {
                                 />
                             </Grid>
                         )
-                    )}
+                    )} */}
             </Grid>
         </Container>
     )

@@ -16,16 +16,24 @@ import {
     rem,
 } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
-import {
-    IconCoffee,
-    IconBook,
-    IconHealthRecognition,
-    IconChevronDown,
-} from '@tabler/icons-react'
+import { IconChevronDown } from '@tabler/icons-react'
 import Logo from 'components/Logo/Logo'
 import { NavLink } from 'react-router-dom'
+import { useAppSelector } from 'redux/hooks'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import { FavoriteBorder } from '@mui/icons-material'
+import linksArray from 'utils/linksArray'
+import { useContext } from 'react'
+import { AppContext } from 'Container/App/App'
 
 const useStyles = createStyles((theme) => ({
+    header: {
+        backgroundColor:
+            theme.colorScheme === 'dark'
+                ? theme.colors.dark[6]
+                : theme.colors.gray[1],
+    },
+
     link: {
         display: 'flex',
         alignItems: 'center',
@@ -78,46 +86,40 @@ const useStyles = createStyles((theme) => ({
             display: 'none',
         },
     },
-}))
 
-const mockdata = [
-    {
-        icon: IconBook,
-        title: 'Book-recipes',
-        link: '/book-of-recipes',
-        description: 'Yanma is capable of seeing 360 degrees without',
+    counter: {
+        marginLeft: '4px',
+        //color: 'white',
     },
-    {
-        icon: IconCoffee,
-        title: 'Restaurant',
-        link: '/restaurant',
-        description: 'This Pokémon’s cry is very loud and distracting',
-    },
-    {
-        icon: IconHealthRecognition,
-        title: 'Healthy Eating',
-        link: '/healthy-eating',
-        description: 'The fluid of Smeargle’s tail secretions changes',
-    },
-]
+}))
 
 type Props = {}
 
 const HeaderMegaMenu = (props: Props) => {
+    const data = useContext(AppContext)
+
+    //const counter = useAppSelector((state) => state.articleLikeState.count)
+    const likedId = useAppSelector((state) => state.articleLikeState)
+
+    const asArray = Object.entries(likedId)
+
+    const arrayLiked = asArray.filter(([key, value]) => value === true)
+    console.log(
+        '🚀 ~ file: HeaderMegaMenu.tsx:107 ~ HeaderMegaMenu ~ arrayLiked:',
+        arrayLiked
+    )
+
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
         useDisclosure(false)
     const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false)
     const { classes, theme } = useStyles()
 
-    const links = mockdata.map((item) => (
-        <NavLink to={item.link}>
+    const links = linksArray.map((item) => (
+        <NavLink to={item.link} key={item.title}>
             <UnstyledButton className={classes.subLink} key={item.title}>
-                <Group noWrap align="flex-start">
+                <Group align="flex-start">
                     <ThemeIcon size={34} variant="default" radius="md">
-                        <item.icon
-                            size={rem(22)}
-                            color={theme.fn.primaryColor()}
-                        />
+                        <item.icon size={rem(22)} color="#25b7d3" />
                     </ThemeIcon>
                     <div>
                         <Text size="sm" fw={500}>
@@ -134,7 +136,7 @@ const HeaderMegaMenu = (props: Props) => {
 
     return (
         <Box pb={60}>
-            <Header height={60} px="md" fixed>
+            <Header className={classes.header} height={60} px="md" fixed>
                 <Group position="apart" sx={{ height: '100%' }}>
                     <Logo />
                     <Group
@@ -142,11 +144,11 @@ const HeaderMegaMenu = (props: Props) => {
                         spacing={0}
                         className={classes.hiddenMobile}
                     >
-                        <a href="/" className={classes.link}>
+                        <NavLink to={'/'} className={classes.link}>
                             Home
-                        </a>
+                        </NavLink>
                         <HoverCard
-                            width={600}
+                            width={400}
                             position="bottom"
                             radius="md"
                             shadow="md"
@@ -163,7 +165,7 @@ const HeaderMegaMenu = (props: Props) => {
                                         </Box>
                                         <IconChevronDown
                                             size={16}
-                                            color={theme.fn.primaryColor()}
+                                            color="#25b7d3"
                                         />
                                     </Center>
                                 </UnstyledButton>
@@ -175,15 +177,27 @@ const HeaderMegaMenu = (props: Props) => {
                                 </SimpleGrid>
                             </HoverCard.Dropdown>
                         </HoverCard>
-                        <a href="/about" className={classes.link}>
+                        <NavLink to={'/about'} className={classes.link}>
                             About
-                        </a>
-                        <a href="/contact" className={classes.link}>
+                        </NavLink>
+                        <NavLink to={'/contact'} className={classes.link}>
                             Contact
-                        </a>
-                        <a href="/favorites" className={classes.link}>
+                        </NavLink>
+                        <NavLink
+                            to={'/favorites'}
+                            className={classes.link}
+                            onClick={() =>
+                                data?.addArticlesToFavorites(arrayLiked)
+                            }
+                        >
                             Favorites
-                        </a>
+                            {/* {counter ? (
+                                <FavoriteIcon color="warning" />
+                            ) : (
+                                <FavoriteBorder color="warning" />
+                            )} */}
+                            {/* <span className={classes.counter}>{counter}</span> */}
+                        </NavLink>
                     </Group>
 
                     <Burger
@@ -207,32 +221,34 @@ const HeaderMegaMenu = (props: Props) => {
                 }}
                 overlayProps={{ opacity: 0.5, blur: 4 }}
                 className={classes.hiddenDesktop}
-                //zIndex={1000000}
             >
-                <a href="/" className={classes.link}>
+                <NavLink to={'/'} className={classes.link}>
                     Home
-                </a>
+                </NavLink>
                 <UnstyledButton className={classes.link} onClick={toggleLinks}>
                     <Center inline>
                         <Box component="span" mr={5}>
                             Category
                         </Box>
-                        <IconChevronDown
-                            size={16}
-                            color={theme.fn.primaryColor()}
-                        />
+                        <IconChevronDown size={16} color="#25b7d3" />
                     </Center>
                 </UnstyledButton>
                 <Collapse in={linksOpened}>{links}</Collapse>
-                <a href="/about" className={classes.link}>
+                <NavLink to={'/about'} className={classes.link}>
                     About
-                </a>
-                <a href="/contact" className={classes.link}>
+                </NavLink>
+                <NavLink to={'/contact'} className={classes.link}>
                     Contact
-                </a>
-                <a href="/favorites" className={classes.link}>
+                </NavLink>
+                <NavLink to={'/favorites'} className={classes.link}>
                     Favorites
-                </a>
+                    {/* {counter ? (
+                        <FavoriteIcon color="warning" />
+                    ) : (
+                        <FavoriteBorder color="warning" />
+                    )}
+                    <span className={classes.counter}>{counter}</span> */}
+                </NavLink>
 
                 <Divider
                     my="sm"

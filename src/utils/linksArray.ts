@@ -1,42 +1,26 @@
-export type Links = { link: string; label: string; links?: { link: string; label: string }[] }[]
+import { IconBook, IconCoffee, IconHealthRecognition } from "@tabler/icons-react";
+
+export type Links = { icon: any, title: string, link: string, description: string}[]
 
 const linksArray: Links = [
-    {
-      link: "/",
-      label: "Home"
-    },
-    
-    {
-      link: "/about",
-      label: "About"
-    },
-    {
-      link: "/contact",
-      label: "Contact"
-    },
-   
-    {
-      link: "#",
-      label: "Category",
-      links: [
-        {
-          link: "/book-of-recipes",
-          label: "Book-recipes"
-        },
-        {
-          link: "/restaurant",
-          label: "Restaurant"
-        },
-        {
-          link: "/healthy-eating",
-          label: "Healthy Eating"
-        },
-      ]
-    },
-    {
-      link: "/favorites",
-      label: "Favorites"
-    },
+  {
+    icon: IconBook,
+    title: 'Book-recipes',
+    link: '/book-of-recipes',
+    description: 'Cook for health with a recipe book',
+},
+{
+    icon: IconCoffee,
+    title: 'Restaurant',
+    link: '/restaurant',
+    description: 'Welcome to our restaurant with the best menu!',
+},
+{
+    icon: IconHealthRecognition,
+    title: 'Healthy Eating',
+    link: '/healthy-eating',
+    description: 'Healthy food is a guarantee of a healthy life!',
+},
   ]
 
   export default linksArray
