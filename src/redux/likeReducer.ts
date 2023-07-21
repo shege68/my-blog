@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 type LikeState = {
     [id: number]: boolean
-    //count: number
+    count: number
 }
 
-const initialState:  LikeState = {}
+const initialState:  LikeState = {count:0}
 
 export const likeSlice = createSlice({
     name: 'like',
@@ -14,8 +14,7 @@ export const likeSlice = createSlice({
         toggleLike: (state, action) => ({
             ...state,
             [action.payload]: !state[action.payload],
-            //likeId: [action.payload],
-            //count: !state[action.payload] ? state.count + 1 : state.count - 1,
+            count: !state[action.payload] ? state.count + 1 : state.count - 1,
         })
     }
 })

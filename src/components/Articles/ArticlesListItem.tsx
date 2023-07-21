@@ -60,7 +60,6 @@ const ArticlesListItem = ({
     }
 
     const isLiked = useAppSelector((state) => state.articleLikeState[id])
-    //console.log('🚀 ~ file: ArticlesListItem.tsx:58 ~ isLiked:', isLiked)
 
     const dispatch = useAppDispatch()
 

@@ -23,8 +23,6 @@ import { useAppSelector } from 'redux/hooks'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { FavoriteBorder } from '@mui/icons-material'
 import linksArray from 'utils/linksArray'
-import { useContext } from 'react'
-import { AppContext } from 'Container/App/App'
 
 const useStyles = createStyles((theme) => ({
     header: {
@@ -89,25 +87,13 @@ const useStyles = createStyles((theme) => ({
 
     counter: {
         marginLeft: '4px',
-        //color: 'white',
     },
 }))
 
 type Props = {}
 
 const HeaderMegaMenu = (props: Props) => {
-    const data = useContext(AppContext)
-
-    //const counter = useAppSelector((state) => state.articleLikeState.count)
-    const likedId = useAppSelector((state) => state.articleLikeState)
-
-    const asArray = Object.entries(likedId)
-
-    const arrayLiked = asArray.filter(([key, value]) => value === true)
-    console.log(
-        '🚀 ~ file: HeaderMegaMenu.tsx:107 ~ HeaderMegaMenu ~ arrayLiked:',
-        arrayLiked
-    )
+    const counter = useAppSelector((state) => state.articleLikeState.count)
 
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
         useDisclosure(false)
@@ -183,20 +169,14 @@ const HeaderMegaMenu = (props: Props) => {
                         <NavLink to={'/contact'} className={classes.link}>
                             Contact
                         </NavLink>
-                        <NavLink
-                            to={'/favorites'}
-                            className={classes.link}
-                            onClick={() =>
-                                data?.addArticlesToFavorites(arrayLiked)
-                            }
-                        >
+                        <NavLink to={'/favorites'} className={classes.link}>
                             Favorites
-                            {/* {counter ? (
+                            {counter ? (
                                 <FavoriteIcon color="warning" />
                             ) : (
                                 <FavoriteBorder color="warning" />
-                            )} */}
-                            {/* <span className={classes.counter}>{counter}</span> */}
+                            )}
+                            <span className={classes.counter}>{counter}</span>
                         </NavLink>
                     </Group>
 
@@ -242,12 +222,12 @@ const HeaderMegaMenu = (props: Props) => {
                 </NavLink>
                 <NavLink to={'/favorites'} className={classes.link}>
                     Favorites
-                    {/* {counter ? (
+                    {counter ? (
                         <FavoriteIcon color="warning" />
                     ) : (
                         <FavoriteBorder color="warning" />
                     )}
-                    <span className={classes.counter}>{counter}</span> */}
+                    <span className={classes.counter}>{counter}</span>
                 </NavLink>
 
                 <Divider

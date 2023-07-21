@@ -1,17 +1,29 @@
 import { Text, Title } from '@mantine/core'
 import { Container, Grid } from '@mui/material'
 import ArticlesListItem from 'components/Articles/ArticlesListItem'
-import { useState } from 'react'
-import { useParams } from 'react-router-dom'
 import { useAppSelector } from 'redux/hooks'
-import articlesArray from 'utils/articlesArray'
-import getArticlesObject from 'utils/articlesArray'
+import articlesArray, { Articles, getArticlesObject } from 'utils/articlesArray'
 
-type Props = {}
+type Props = {
+    articlesObject?: {
+        [id: number]: Articles
+    }
+}
 
-const Favorites = (props: Props) => {
+const Favorites = ({
+    articlesObject = getArticlesObject(articlesArray),
+}: Props) => {
+    const likedId = useAppSelector((state) => state.articleLikeState)
+
+    const arrayIdLiked = Object.entries(likedId).reduce((newArr: any, arr) => {
+        if (arr[1] === true) {
+            newArr.push(arr[0])
+        }
+        return newArr
+    }, [])
+
     return (
-        <Container sx={{ padding: '30px 20px' }}>
+        <Container sx={{ padding: '30px 20px', minHeight: '50rem' }}>
             <Title order={1} align="center" mb={10}>
                 Favorites
             </Title>
@@ -27,34 +39,20 @@ const Favorites = (props: Props) => {
                 </p>
             </Text>
             <Grid container spacing={4}>
-                {/* {Object.keys(likedId).filter((item) => item === true)} */}
-                {/* {newArticlesArray
-                    .filter((item) => item.liked === true)
-                    .map(
-                        ({
-                            id,
-                            title,
-                            subheader,
-                            description,
-                            image,
-                            alt,
-                            link,
-                            avatar,
-                        }) => (
-                            <Grid item xs={12} sm={6} md={4} key={id}>
-                                <ArticlesListItem
-                                    id={id}
-                                    title={title}
-                                    subheader={subheader}
-                                    description={description}
-                                    image={image}
-                                    alt={alt}
-                                    link={link}
-                                    avatar={avatar}
-                                />
-                            </Grid>
-                        )
-                    )} */}
+                {arrayIdLiked.map((idLiked: number) => (
+                    <Grid item xs={12} sm={6} md={4} key={idLiked}>
+                        <ArticlesListItem
+                            id={articlesObject[idLiked].id}
+                            title={articlesObject[idLiked].title}
+                            subheader={articlesObject[idLiked].subheader}
+                            description={articlesObject[idLiked].description}
+                            image={articlesObject[idLiked].image}
+                            alt={articlesObject[idLiked].alt}
+                            link={articlesObject[idLiked].link}
+                            avatar={articlesObject[idLiked].avatar}
+                        />
+                    </Grid>
+                ))}
             </Grid>
         </Container>
     )
