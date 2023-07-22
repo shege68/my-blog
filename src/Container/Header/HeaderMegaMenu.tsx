@@ -190,10 +190,10 @@ const HeaderMegaMenu = (props: Props) => {
 
             <Drawer
                 opened={drawerOpened}
-                closeOnClickOutside
                 onClose={closeDrawer}
+                closeOnClickOutside
                 position="right"
-                size="30rem"
+                size="70vw"
                 padding="md"
                 transitionProps={{
                     transition: 'slide-left',
@@ -203,6 +203,10 @@ const HeaderMegaMenu = (props: Props) => {
                 overlayProps={{ opacity: 0.5, blur: 4 }}
                 className={classes.hiddenDesktop}
             >
+                <Divider
+                    my="sm"
+                    color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}
+                />
                 <NavLink to={'/'} className={classes.link}>
                     Home
                 </NavLink>
