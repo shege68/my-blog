@@ -190,13 +190,14 @@ const HeaderMegaMenu = (props: Props) => {
 
             <Drawer
                 opened={drawerOpened}
+                closeOnClickOutside
                 onClose={closeDrawer}
-                position="top"
-                size="30%"
+                position="right"
+                size="30rem"
                 padding="md"
                 transitionProps={{
-                    transition: 'slide-down',
-                    duration: 150,
+                    transition: 'slide-left',
+                    duration: 300,
                     timingFunction: 'linear',
                 }}
                 overlayProps={{ opacity: 0.5, blur: 4 }}
