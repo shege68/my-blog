@@ -1,4 +1,5 @@
-import { Container, Grid, Typography } from '@mui/material'
+import { Title, Text } from '@mantine/core'
+import { Container, Grid } from '@mui/material'
 import ArticlesListItem from 'components/Articles/ArticlesListItem'
 import articlesArray from 'utils/articlesArray'
 
@@ -6,13 +7,21 @@ type Props = {}
 
 const FreshFood = (props: Props) => {
     return (
-        <Container>
-            <Typography
-                component="h2"
-                variant="h3"
-                align="center"
-                sx={{ marginBottom: '30px' }}
-            ></Typography>
+        <Container sx={{ padding: '30px 20px' }}>
+            <Title order={1} align="center" mb={10}>
+                Restaurant
+            </Title>
+            <Text mx={5}>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Nesciunt nulla quam aut sed corporis voluptates praesentium
+                    inventore, sapiente ex tempore sit consequatur debitis non!
+                    Illo cum ipsa reiciendis quidem facere, deserunt eos totam
+                    impedit. Vel ab, ipsum veniam aperiam odit molestiae
+                    incidunt minus, sint eos iusto earum quaerat vitae
+                    perspiciatis.
+                </p>
+            </Text>
             <Grid container spacing={4}>
                 {articlesArray
                     .filter((item) => item.category === 'Restaurant')

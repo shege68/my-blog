@@ -123,7 +123,6 @@ const Contact = (props: Props) => {
                 Contact Us
             </Title>
             <Image
-                mx={5}
                 radius="md"
                 src="/images/contact-us.jpeg"
                 alt="Random image"

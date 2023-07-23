@@ -87,7 +87,6 @@ const About = (props: Props) => {
                 About
             </Title>
             <Image
-                mx={5}
                 radius="md"
                 src="./images/about1.jpeg"
                 alt="Random image"

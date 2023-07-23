@@ -5,6 +5,23 @@ import './Carousel.scss'
 
 type Props = {}
 
+const responsiveSettings = [
+    {
+        breakpoint: 800,
+        settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+        },
+    },
+    {
+        breakpoint: 0,
+        settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+        },
+    },
+]
+
 const Carousel = (props: Props) => {
     const images = [
         '/images/healthy-eating1.jpeg',
@@ -16,7 +33,12 @@ const Carousel = (props: Props) => {
     ]
 
     return (
-        <Slide>
+        <Slide
+            slidesToScroll={2}
+            slidesToShow={2}
+            indicators={true}
+            responsive={responsiveSettings}
+        >
             <div className="each-slide-effect">
                 <div style={{ backgroundImage: `url(${images[0]})` }}>
                     <Link className="link-carousel" to={`/article/7`}>
